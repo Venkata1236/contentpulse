@@ -73,16 +73,19 @@ async def natural_language_search(
         )
 
         # ── Save to Supabase ───────────────────────────────
-        await db.execute(
-            insert(SearchHistory).values(
-                user_id=request.user_id,
-                query=request.query,
-                extracted_filters=filters_data,
-                results_count=total_found,
+        try:
+            await db.execute(
+                insert(SearchHistory).values(
+                    user_id=request.user_id,
+                    query=request.query,
+                    extracted_filters=filters_data,
+                    results_count=total_found,
+                )
             )
-        )
-        await db.commit()
-        logger.info(f"Search saved to Supabase — user={request.user_id}")
+            await db.commit()
+            logger.info(f"Search saved to Supabase — user={request.user_id}")
+        except Exception as e:
+            logger.warning(f"Search history save skipped: {e}")
 
         return SearchResponse(
             results=results,

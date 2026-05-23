@@ -33,8 +33,8 @@ async def lifespan(app: FastAPI):
     logger.info("✅ Sentiment model loaded")
 
     # ── Step 3: Load TMDB dataset ─────────────────────────
-    movies_path = "backend/data/tmdb_5000_movies.csv"
-    credits_path = "backend/data/tmdb_5000_credits.csv"
+    movies_path = "data/tmdb_5000_movies.csv"
+    credits_path = "data/tmdb_5000_credits.csv"
 
     if os.path.exists(movies_path):
         df_movies = pd.read_csv(movies_path)

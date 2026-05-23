@@ -27,10 +27,12 @@ def load_sentiment_model():
         _tokenizer = DistilBertTokenizer.from_pretrained(model_path)
         _model = DistilBertForSequenceClassification.from_pretrained(model_path)
     else:
-        logger.info(f"Local model not found — loading from HuggingFace Hub: {settings.HF_MODEL_REPO}")
-        _tokenizer = DistilBertTokenizer.from_pretrained(settings.HF_MODEL_REPO)
-        _model = DistilBertForSequenceClassification.from_pretrained(settings.HF_MODEL_REPO)
-
+        logger.info("Local model not found — loading base distilbert-base-uncased")
+        _tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
+        _model = DistilBertForSequenceClassification.from_pretrained(
+            "distilbert-base-uncased",
+            num_labels=2
+        )
     _model.to(_device)
     _model.eval()
     logger.info("Sentiment model loaded and ready")

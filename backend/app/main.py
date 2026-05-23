@@ -22,8 +22,11 @@ async def lifespan(app: FastAPI):
     logger.info("ContentPulse starting up...")
 
     # ── Step 1: Init database ─────────────────────────────
-    await init_db()
-    logger.info("✅ Database initialized")
+    try:
+        await init_db()
+        logger.info("✅ Database initialized")
+    except Exception as e:
+        logger.warning(f"⚠️ Database skipped: {e}")
 
     # ── Step 2: Load sentiment model ──────────────────────
     load_sentiment_model()

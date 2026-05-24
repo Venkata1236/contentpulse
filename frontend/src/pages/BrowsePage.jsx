@@ -6,13 +6,12 @@ import NLSearchBar from "../components/NLSearchBar";
 
 // Featured film IDs from TMDB dataset
 const FEATURED_FILM_IDS = [
-  "19995", // Avatar
-  "299536", // Avengers Infinity War
-  "140607", // Star Wars Force Awakens
+  "19995",  // Avatar
+  "155",    // The Dark Knight
+  "680",    // Pulp Fiction
   "158852", // Tomorrowland
   "102382", // Amazing Spider-Man 2
 ];
-
 const BrowsePage = () => {
   const [allFilms, setAllFilms] = useState([]);
   const [filteredFilms, setFilteredFilms] = useState([]);

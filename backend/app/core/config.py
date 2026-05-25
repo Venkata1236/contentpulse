@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     LANGCHAIN_PROJECT: str = "contentpulse"
 
     # Database
-    DATABASE_URL: str
+    DATABASE_URL: str = ""
 
     # Model paths
     SENTIMENT_MODEL_PATH: str = "saved_models/sentiment_model"

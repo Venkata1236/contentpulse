@@ -14,3 +14,4 @@ backend/data/
 *.zip
 *.csv
 .DS_Store
+hf-space/
